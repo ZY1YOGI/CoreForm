@@ -28,7 +28,7 @@ class FormBuilderTest extends TestCase
         // Add different types of inputs
         $this->form->text('username', 'Username', 'Enter your username')
             ->password('password', 'Password', 'Enter your password')
-            ->text('email', 'Email', 'Enter your email');
+            ->text('email', 'Email', 'Enter your email', 12);
 
         // Get the schema
         $schema = $this->form->getSchema();
@@ -51,7 +51,7 @@ class FormBuilderTest extends TestCase
                 'type' => InputType::TEXT,
                 'label' => 'Email',
                 'placeholder' => 'Enter your email',
-                'col' => 6,
+                'col' => 12,
             ],
         ];
 
