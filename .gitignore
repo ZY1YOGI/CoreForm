@@ -26,7 +26,6 @@ Thumbs.db
 
 # Pest
 .pest.cache
-
 .phpunit.cache
 
 # PHPStorm
