@@ -2,7 +2,7 @@
 
 namespace Form\Inputs;
 
-enum FieldType: string
+enum InputType: string
 {
     case TEXT = 'text';
     case EMAIL = 'email';
