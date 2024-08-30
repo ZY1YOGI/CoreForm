@@ -72,4 +72,17 @@ class FormBuilderTest extends TestCase
         $this->form->text('username', 'Username', 'Enter your username');
     }
 
+    public function testUpdateRules(): void
+    {
+        $this->form->text('username', 'Username', 'Enter your username', 6, ['required', 'string', 'max:255'])
+            ->text('email', 'Email', 'Enter your email', 6, ['required', 'email']);
+
+        // Update the rules for 'username' field
+        $this->form->updateRules('username', ['required', 'string', 'min:3']);
+
+        $rules = $this->form->getRules();
+
+        $this->assertArrayHasKey('username', $rules);
+        $this->assertEquals(['required', 'string', 'min:3'], $rules['username']);
+    }
 }
