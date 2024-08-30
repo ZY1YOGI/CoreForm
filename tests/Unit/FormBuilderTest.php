@@ -2,61 +2,74 @@
 
 namespace Form\Tests\Unit;
 
-use Form\Inputs\FieldType;
+use Form\Inputs\InputType;
 use Form\FormBuilder;
+use Orchestra\Testbench\TestCase;
+use InvalidArgumentException;
 
-it('can create a form', function () {
-    $form = FormBuilder::make('exampleForm');
+class FormBuilderTest extends TestCase
+{
+    protected FormBuilder $form;
 
-    expect($form->getFormName())->toBe('exampleForm');
-});
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->form = FormBuilder::make('exampleForm');
+    }
 
-it('can add a text field', function () {
-    $form = FormBuilder::make('exampleForm')
-        ->text('username', 'Username', 'Enter your username');
+    public function testCanCreateForm(): void
+    {
+        $this->assertEquals('exampleForm', $this->form->getFormName());
+    }
 
-    $schema = $form->getSchema();
+    public function testCanAddTextInput(): void
+    {
+        $this->form->text('username', 'Username', 'Enter your username');
 
-    expect($schema)->toHaveKey('username');
-    expect($schema['username']['type'])->toBe(FieldType::TEXT);
-});
+        $schema = $this->form->getSchema();
 
+        $this->assertArrayHasKey('username', $schema);
+        $this->assertEquals(InputType::TEXT, $schema['username']['type']);
+    }
 
-it('validates data correctly with given rules', function () {
-    // Define the form with rules
-    $form = FormBuilder::make('exampleForm')
-        ->text('username', 'Username', 'Enter your username', 6, ['required', 'string', 'max:255'])
-        ->text('email', 'Email', 'Enter your email', 6, ['required', 'email']);
+    public function testValidatesDataCorrectlyWithGivenRules(): void
+    {
+        $this->form->text('username', 'Username', 'Enter your username', 6, ['required', 'string', 'max:255'])
+            ->text('email', 'Email', 'Enter your email', 6, ['required', 'email']);
 
-    // Define the data to validate
-    $data = [
-        'username' => 'JohnDoe',
-        'email' => 'john.doe@example.com',
-    ];
+        $data = [
+            'username' => 'JohnDoe',
+            'email' => 'john.doe@example.com',
+        ];
 
-    // Validate the data
-    $validator = $form->formValidation($data);
+        $validator = $this->form->formValidation($data);
 
-    // Assert that validation passes
-    expect($validator->passes())->toBeTrue();
-});
+        $this->assertTrue($validator->passes());
+    }
 
-it('fails validation with incorrect data', function () {
-    // Define the form with rules
-    $form = FormBuilder::make('exampleForm')
-        ->text('username', 'Username', 'Enter your username', 6, ['required', 'string', 'max:255'])
-        ->text('email', 'Email', 'Enter your email', 6, ['required', 'email']);
+    public function testFailsValidationWithIncorrectData(): void
+    {
+        $this->form->text('username', 'Username', 'Enter your username', 6, ['required', 'string', 'max:255'])
+            ->text('email', 'Email', 'Enter your email', 6, ['required', 'email']);
 
-    // Define the data to validate (intentionally invalid)
-    $data = [
-        'username' => '', // Fails required rule
-        'email' => 'invalid-email', // Fails email rule
-    ];
+        $data = [
+            'username' => '', // Fails required rule
+            'email' => 'invalid-email', // Fails email rule
+        ];
 
-    // Validate the data
-    $validator = $form->formValidation($data);
+        $validator = $this->form->formValidation($data);
 
-    expect($validator->fails())->toBeTrue();
-    expect($validator->errors()->get('username'))->toContain('The username field is required.');
-    expect($validator->errors()->get('email'))->toContain('The email field must be a valid email address.');
-});
+        $this->assertTrue($validator->fails());
+        $this->assertContains('The username field is required.', $validator->errors()->get('username'));
+        $this->assertContains('The email field must be a valid email address.', $validator->errors()->get('email'));
+    }
+
+    public function testCannotAddTwoTextInputsWithSameName(): void
+    {
+        $this->form->text('username', 'Username', 'Enter your username');
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->form->text('username', 'Username', 'Enter your username');
+    }
+
+}
