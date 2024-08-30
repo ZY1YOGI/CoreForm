@@ -4,16 +4,8 @@ namespace Form\Inputs;
 
 trait Password
 {
-    public function password(string $name, string $label, string $placeholder = '', int $col = 6, array $rules = [], array $attributes = []): self
+    public function password(string $name, string $label, string $placeholder = '', int $col = 6, array $rules = []): self
     {
-        $this->fields[$name] = [
-            'type' => FieldType::PASSWORD,
-            'label' => $label,
-            'placeholder' => $placeholder,
-            'col' => $col,
-            'rules' => $rules,
-            'attributes' => $attributes
-        ];
-        return $this;
+        return $this->addInput($name, InputType::PASSWORD, $label, $placeholder, $col, $rules);
     }
 }
