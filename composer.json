@@ -6,17 +6,21 @@
             "email": "ZY1YOGI@gmail.com"
         }
     ],
-    "autoload": {
-        "psr-4": {
-            "Form\\": "src/",
-            "Form\\Tests\\": "tests"
-        }
-    },
     "require": {},
     "require-dev": {
         "pestphp/pest": "^2.35",
         "pestphp/pest-plugin-laravel": "^2.4",
         "orchestra/testbench": "^9.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Form\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Form\\Tests\\": "tests"
+        }
     },
     "extra": {
         "laravel": {
