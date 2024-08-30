@@ -85,4 +85,20 @@ class FormBuilderTest extends TestCase
         $this->assertArrayHasKey('username', $rules);
         $this->assertEquals(['required', 'string', 'min:3'], $rules['username']);
     }
+
+    public function testPerformanceOfAddingInputs(): void
+    {
+        $startTime = microtime(true);
+
+        $form = FormBuilder::make('performanceForm');
+
+        for ($i = 0; $i < 100000; $i++) {
+            $form->text("field{$i}", 'Field Label', 'Field Placeholder');
+        }
+
+        $endTime = microtime(true);
+        $duration = $endTime - $startTime;
+
+        $this->assertLessThan(0000000001, $duration, 'Performance test failed: Time taken exceeds 1 second.');
+    }
 }
