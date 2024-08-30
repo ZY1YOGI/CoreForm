@@ -1,0 +1,31 @@
+# Composer
+/vendor/
+/composer.lock
+
+# Laravel specific
+/.env
+/.env.*.backup
+/storage/
+/bootstrap/cache/
+
+# Node
+/node_modules/
+/npm-debug.log
+/yarn-error.log
+/pnpm-debug.log
+/hydrogen.lock
+
+# IDEs and editors
+/.idea/
+/.vscode/
+/*.sublime-workspace
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Pest
+.pest.cache
+
+# PHPStorm
+/.phpstorm.meta.php

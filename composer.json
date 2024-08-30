@@ -1,0 +1,34 @@
+{
+    "name": "core/form",
+    "autoload": {
+        "psr-4": {
+            "Form\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ZY1YOGI",
+            "email": "ZY1YOGI@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^11.21",
+        "illuminate/http": "^11.21",
+        "illuminate/validation": "^11.21"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.35"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Form\\FormServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
