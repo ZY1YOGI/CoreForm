@@ -22,6 +22,43 @@ class FormBuilderTest extends TestCase
         $this->assertEquals('exampleForm', $this->form->getFormName());
     }
 
+
+    public function testFormSchema(): void
+    {
+        // Add different types of inputs
+        $this->form->text('username', 'Username', 'Enter your username')
+            ->password('password', 'Password', 'Enter your password')
+            ->text('email', 'Email', 'Enter your email');
+
+        // Get the schema
+        $schema = $this->form->getSchema();
+
+        // Define the expected schema output
+        $expectedSchema = [
+            'username' => [
+                'type' => InputType::TEXT,
+                'label' => 'Username',
+                'placeholder' => 'Enter your username',
+                'col' => 6,
+            ],
+            'password' => [
+                'type' => InputType::PASSWORD,
+                'label' => 'Password',
+                'placeholder' => 'Enter your password',
+                'col' => 6,
+            ],
+            'email' => [
+                'type' => InputType::TEXT,
+                'label' => 'Email',
+                'placeholder' => 'Enter your email',
+                'col' => 6,
+            ],
+        ];
+
+        // Assert that the schema matches the expected output
+        $this->assertEquals($expectedSchema, $schema);
+    }
+
     public function testCanAddTextInput(): void
     {
         $this->form->text('username', 'Username', 'Enter your username');
