@@ -1,23 +1,22 @@
 {
     "name": "core/form",
-    "autoload": {
-        "psr-4": {
-            "Form\\": "src/"
-        }
-    },
     "authors": [
         {
             "name": "ZY1YOGI",
             "email": "ZY1YOGI@gmail.com"
         }
     ],
-    "require": {
-        "illuminate/support": "^11.21",
-        "illuminate/http": "^11.21",
-        "illuminate/validation": "^11.21"
+    "autoload": {
+        "psr-4": {
+            "Form\\": "src/",
+            "Form\\Tests\\": "tests"
+        }
     },
+    "require": {},
     "require-dev": {
-        "pestphp/pest": "^2.35"
+        "pestphp/pest": "^2.35",
+        "pestphp/pest-plugin-laravel": "^2.4",
+        "orchestra/testbench": "^9.4"
     },
     "extra": {
         "laravel": {
