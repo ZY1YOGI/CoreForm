@@ -81,9 +81,11 @@ class FormBuilder
 
     public function updateRules(string $name, array $rules): self
     {
-        if (isset($this->inputs[$name])) {
-            $this->inputs[$name]['rules'] = $rules;
+        if (!isset($this->inputs[$name])) {
+            throw new InvalidArgumentException("Input with the name '{$name}' does not exist.");
         }
+
+        $this->inputs[$name]['rules'] = $rules;
         return $this;
     }
 }
