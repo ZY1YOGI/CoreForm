@@ -1,8 +1,8 @@
 <?php
 
-namespace Form;
+namespace Core\Form;
 
-use Form\Inputs;
+use Core\Form\Inputs;
 use Illuminate\Support\Facades\Validator;
 use InvalidArgumentException;
 

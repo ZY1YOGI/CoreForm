@@ -1,6 +1,6 @@
 <?php
 
-namespace Form\Inputs;
+namespace Core\Form\Inputs;
 
 trait Password
 {

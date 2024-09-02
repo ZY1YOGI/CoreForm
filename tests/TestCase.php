@@ -1,9 +1,9 @@
 <?php
 
-namespace Form\Tests;
+namespace Core\Form\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use Form\FormServiceProvider;
+use Core\Form\FormServiceProvider;
 
 class TestCase extends Orchestra
 {

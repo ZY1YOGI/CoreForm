@@ -1,9 +1,9 @@
 <?php
 
-namespace Form\Tests\Unit;
+namespace Core\Form\Tests\Unit;
 
-use Form\Inputs\InputType;
-use Form\FormBuilder;
+use Core\Form\Inputs\InputType;
+use Core\Form\FormBuilder;
 use Orchestra\Testbench\TestCase;
 use InvalidArgumentException;
 

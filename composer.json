@@ -14,18 +14,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Form\\": "src/"
+            "Core\\Form\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Form\\Tests\\": "tests"
+            "Core\\Form\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Form\\FormServiceProvider"
+                "Core\\Form\\FormServiceProvider"
             ]
         }
     },
