@@ -35,13 +35,13 @@ class FormBuilder
      * @param string $placeholder The placeholder for the input.
      * @param int $col The column size for the input.
      * @param array $rules Validation rules for the input.
-     * @param array $custom Additional custom properties.
+     * @param $custom Additional custom properties.
      *
      * @return self
      *
      * @throws InvalidArgumentException if an input with the same name already exists.
      */
-    protected function addInput(string $name, Inputs\InputType $type, string $label, string $placeholder = '', int $col = 6, array $rules = [], array ...$custom): self
+    protected function addInput(string $name, Inputs\InputType $type, string $label, string $placeholder = '', int $col = 6, array $rules = [], ...$custom): self
     {
         if (array_key_exists($name, $this->inputs)) {
             throw new InvalidArgumentException("An input with the name '{$name}' already exists.");
